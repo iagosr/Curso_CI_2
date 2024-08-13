@@ -1,31 +1,28 @@
-
 name: Go
 
 on:
   workflow_call:
-  
-jobs:
 
+jobs:
   docker:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: setup docker build
-      uses: docker/setup-buildx-action@v3.6.1
+      - name: setup docker build
+        uses: docker/setup-buildx-action@v3.6.1
 
-    - name: Docker Login
-      uses: docker/login-action@v3.3.0
-      with:
-        username: iagosoares
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker Login
+        uses: docker/login-action@v3.3.0
+        with:
+          username: iagosoares
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v6.6.1
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: iagosoares/go_ci:${{github.ref_name}}
-        
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v6.6.1
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: iagosoares/go_ci:${{github.ref_name}}
