@@ -28,3 +28,4 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: iagosoares/go_ci:${{github.ref_name}}
+        
